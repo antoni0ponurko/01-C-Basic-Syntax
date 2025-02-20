@@ -5,26 +5,22 @@ class Program
 {
     static void Main()
     {
-        Console.WriteLine("Welcome to the Clothing Store Checkout System!");
-
-        int trousers = GetQuantity("trousers");
-        int tShirts = GetQuantity("T-shirts");
-        int vests = GetQuantity("vests");
-
-        double totalCost = (trousers * 70.5) + (tShirts * 20.89) + (vests * 100.3);
-
-        Console.WriteLine($"The total payable amount is: {totalCost:F2} EUR");
-    }
-
-    static int GetQuantity(string item)
-    {
-        int quantity;
-        Console.Write($"Enter the number of {item} purchased: ");
-        while (!int.TryParse(Console.ReadLine(), out quantity) || quantity < 0)
+        Console.Write("Enter the price of the construction land: ");
+        double landPrice;
+        while (!double.TryParse(Console.ReadLine(), out landPrice) || landPrice < 0)
         {
-            Console.Write($"Please enter a valid non-negative number for {item}: ");
+            Console.Write("Please enter a valid non-negative number: ");
         }
-        return quantity;
+
+        Console.Write("Enter the price of the building: ");
+        double buildingPrice;
+        while (!double.TryParse(Console.ReadLine(), out buildingPrice) || buildingPrice < 0)
+        {
+            Console.Write("Please enter a valid non-negative number: ");
+        }
+
+        double totalCost = (landPrice + buildingPrice) * 1.21;
+
+        Console.WriteLine($"The total cost of the project, including a 21% charge, is: {totalCost:F2} EUR");
     }
 }
-
